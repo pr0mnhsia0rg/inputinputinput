@@ -1,0 +1,95 @@
+
+
+
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<title>Card Payment</title>
+
+<style>
+
+body{
+    font-family: Arial;
+   
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:60vh;
+}
+
+.card-box{
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+input{
+    padding:10px;
+    font-size:16px;
+    margin-bottom:15px;
+    width:220px;
+}
+
+#cvv{
+    width:80px;
+    text-align:center;
+}
+
+</style>
+
+</head>
+<body bgcolor="gray">
+
+<div class="card-box">
+
+<label>Card Number</label><br>
+<input type="text" id="cardnumber" placeholder="1234 5678 9012 3456" maxlength="19" required>
+
+<br>
+
+<label>Card Holder Name</label><br>
+<input type="text" id="name" placeholder="JOHN PAPADOPOULOS" required>
+
+<br>
+
+<label>CVV</label><br>
+<input type="text" id="cvv" maxlength="3" placeholder="123" required>
+
+</div>
+
+<script>
+
+document.getElementById("cardnumber").addEventListener("input", function () {
+
+    let value = this.value.replace(/\D/g,'');
+
+    value = value.substring(0,16);
+
+    value = value.replace(/(.{4})/g,'$1 ').trim();
+
+    this.value = value;
+
+});
+
+document.getElementById("name").addEventListener("input", function () {
+
+    this.value = this.value
+        .toUpperCase()
+        .replace(/[^A-Z\s]/g,'');
+
+});
+
+document.getElementById("cvv").addEventListener("input", function () {
+
+    this.value = this.value
+        .replace(/[^0-9]/g,'')
+        .slice(0,3);
+
+});
+
+</script>
+
+</body>
+</html>
